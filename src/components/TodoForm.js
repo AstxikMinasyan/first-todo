@@ -8,16 +8,18 @@ const TodoForm = ({setTodos, todos}) => {
 
     const addNewItem = (event) => {
         event.preventDefault();
-        if(inputText !== ""){
+        if(inputText.trim() !== "") { // Check if the input text is not empty or whitespace-only
             const todoItem = {
-                text: inputText,
+                text: inputText.trim(), // Trim the input text to remove leading and trailing spaces
                 id: new Date().getTime()
             }
-            setTodos((old) => [...old, todoItem])
-            setFilteredTasks((old) => [...old, todoItem])
-            setInputText("")
+            setTodos((old) => [...old, todoItem]);
+            setFilteredTasks((old) => [...old, todoItem]);
+            setInputText("");
         }
     }
+    
+    
 
     const handleSearch = (e) => {
         const query = e.target.value;
@@ -29,7 +31,7 @@ const TodoForm = ({setTodos, todos}) => {
         const filtered = todos.filter(task => 
             task.text.toLowerCase().includes(query.toLowerCase())
         )
-
+        
         if(searchQuery.length > query.length){
             const filtered = filteredTasks.filter(task => 
                 task.text.toLowerCase().includes(query.toLowerCase())

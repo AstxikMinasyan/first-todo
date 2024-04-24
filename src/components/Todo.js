@@ -27,15 +27,22 @@ const Todo = ({ todoItem, setTodos, todos }) => {
   };
 
   const saveChanges = (id) => {
-    const updatedTodos = todos.map((i) => {
-      if (i.id === updateId) {
-        i.text = inputValue;
-      }
-      return i;
-    });
-    setTodos([...updatedTodos]);
-    setUpdateId("");
-  };
+    // Check if the input value is not empty or whitespace-only
+    if (inputValue.trim() !== "") {
+        const updatedTodos = todos.map((i) => {
+            if (i.id === updateId) {
+                i.text = inputValue.trim(); // Trim the input value to remove leading and trailing spaces
+            }
+            return i;
+        });
+        setTodos([...updatedTodos]);
+        setUpdateId("");
+    } else {
+        // Alert the user that the input cannot be empty
+        alert("Text cannot be empty or whitespace-only");
+    }
+};
+
 
   const handleTextClick = () => {
     setIsClicked(!isClicked);
