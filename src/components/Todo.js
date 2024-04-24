@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const Todo = ({ todoItem, setTodos, todos }) => {
   const [updateId, setUpdateId] = useState("");
@@ -6,7 +8,22 @@ const Todo = ({ todoItem, setTodos, todos }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const deleteItem = (id) => {
-    setTodos((old) => [...old.filter((i) => i.id !== id)]);
+    confirmAlert({
+      title: 'Confirm Deletion',
+      message: 'Do you want to delete this task?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            setTodos((old) => [...old.filter((i) => i.id !== id)]);
+          },
+        },
+        {
+          label: 'No',
+          onClick: () => console.log('Delete canceled.'),
+        },
+      ],
+    });
   };
 
   const saveChanges = (id) => {
