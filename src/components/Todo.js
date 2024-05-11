@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-const Todo = ({ todoItem, setTodos, todos }) => {
+const Todo = ({ todoItem, setTodos, todos, setFilteredTasks }) => {
   const [updateId, setUpdateId] = useState("");
   const [inputValue, setInputValue] = useState(todoItem.text);
   const [isClicked, setIsClicked] = useState(false);
@@ -16,6 +16,7 @@ const Todo = ({ todoItem, setTodos, todos }) => {
           label: 'Yes',
           onClick: () => {
             setTodos((old) => [...old.filter((i) => i.id !== id)]);
+            setFilteredTasks((old) => [...old.filter((i) => i.id !== id)])
           },
         },
         {

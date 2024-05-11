@@ -1,8 +1,7 @@
 import {  useState } from "react"
-const TodoForm = ({setTodos, todos}) => {
+const TodoForm = ({setTodos, todos,setFilteredTasks, filteredTasks}) => {
     const [inputText, setInputText] = useState("")
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredTasks,setFilteredTasks] = useState(todos);
 
 
 
